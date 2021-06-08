@@ -20,7 +20,7 @@ build:
 	--mount type=bind,source="$$(pwd)",target="$$(pwd)" \
 	-w "$$(pwd)" \
 	$(TAG) \
-	make compile
+	make NAME=$(NAME) compile
 
 compile:
 	arduino-cli compile -b $(FQBN) --output-dir ./build $(OPTS) $(NAME)
