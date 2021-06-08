@@ -11,7 +11,6 @@ OUTPUT_NAME:=$(NAME)-$(REV)$(NAME_SUFFIX)
 OUTPUT_DIR:=$(NAME)-$(REV)$(NAME_SUFFIX)
 COPYFILE_DISABLE=1
 export COPYFILE_DISABLE
-#WRITER:=$(HOME)/Library/Arduino15/packages/SPRESENSE/tools/spresense-tools/2.2.0/flash_writer/macosx/flash_writer
 
 .PHONY: build upload setup mon docker
 
@@ -31,7 +30,6 @@ compile:
 
 upload:
 	arduino-cli upload -t -b $(FQBN) -p $(PORT) -i $(BUILD)/$(OUTPUT_DIR)/$(OUTPUT_NAME).ino.spk
-	# $(WRITER) -c $(PORT) -a $(BUILD)/$(OUTPUT_DIR)/$(OUTPUT_NAME).ino.spk
 
 clean:
 	@-rm -rf $(BUILD)

@@ -24,6 +24,8 @@ Go でインストールするツールを実行可能にするのに以下の�
 PATH=$(go env GOPATH)/bin:$PATH
 ```
 
+SPRESENSE サポートのインストール
+
 ```shell
 arduino-cli config init
 arduino-cli config add board_manager.additional_urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
@@ -31,8 +33,23 @@ arduino-cli core update-index
 arduino-cli core install SPRESENSE:spresense
 ```
 
+サンプルのビルドとアップロードと動作ログの表示
+
 ```shell
 git clone github.com/144lab/spresense-ethernet-examples
-cd examples
+cd spresense-ethernet-examples/examples
 make NAME=dhcp-client build upload
+make mon
 ```
+
+出力例（シリアルモニタを繋いだらサンプルが動作を開始します）：
+
+```shell
+pyserial-miniterm $(ls -1 /dev/tty.usbserial-14*) 115200
+--- Miniterm on /dev/tty.usbserial-1410  115200,8,N,1 ---
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---
+Initialize Ethernet with DHCP:
+My IP address: 192.168.2.2
+```
+
+pyserial-miniterm の終了方法は「Ctrl+]」です。
