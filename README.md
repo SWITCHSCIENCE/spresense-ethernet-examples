@@ -37,7 +37,7 @@ arduino-cli core install SPRESENSE:spresense
 
 ```shell
 git clone github.com/144lab/spresense-ethernet-examples
-cd spresense-ethernet-examples/examples
+cd spresense-ethernet-examples
 make NAME=dhcp-client build upload
 make mon
 ```

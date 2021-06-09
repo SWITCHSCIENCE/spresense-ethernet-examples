@@ -3,6 +3,7 @@ TAG:=localhost/spresense-arduino
 FQBN:=SPRESENSE:spresense:spresense
 PORT=$$(ls -1 /dev/tty.usbserial-14*)
 REV:=$(shell git describe --tags || echo none)
+PWD:=$(shell pwd)
 NAME_SUFFIX=
 BUILD=./build
 CFLAGS:=
@@ -15,12 +16,15 @@ export COPYFILE_DISABLE
 .PHONY: build upload setup mon docker
 
 build:
-	docker build --rm -t $(TAG) ../docker
+	docker build --rm -t $(TAG) ./docker
 	docker run -it \
-	--mount type=bind,source="$$(pwd)",target="$$(pwd)" \
-	-w "$$(pwd)" \
+	--mount type=bind,source="$(PWD)",target=/app \
+	-w /app \
 	$(TAG) \
 	make NAME=$(NAME) compile
+
+test:
+	@echo "$(PWD)"
 
 compile:
 	arduino-cli compile -b $(FQBN) --output-dir ./build $(OPTS) $(NAME)
