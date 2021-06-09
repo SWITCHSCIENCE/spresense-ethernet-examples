@@ -95,7 +95,7 @@ class EthernetClass {
                     IPAddress gateway);
   static void begin(uint8_t *mac, IPAddress ip, IPAddress dns,
                     IPAddress gateway, IPAddress subnet);
-  static void init(uint8_t sspin = 10);
+  static void init(uint8_t sspin = PIN_D24);
 
   static void MACAddress(uint8_t *mac_address);
   static IPAddress localIP();

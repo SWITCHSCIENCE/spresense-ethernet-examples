@@ -22,7 +22,7 @@
 
 // Safe for W5200 and W5500, but too fast for W5100
 // Uncomment this if you know you'll never need W5100 support.
-//  Higher SPIETH clock only results in faster transfer to hosts on a LAN
+//  Higher SPI clock only results in faster transfer to hosts on a LAN
 //  or with very low packet latency.  With ordinary internet latency,
 //  the TCP window size & packet loss determine your overall speed.
 //#define SPI_ETHERNET_SETTINGS SPISettings(30000000, MSBFIRST, SPI_MODE0)
@@ -32,7 +32,7 @@
 #error "Ethernet.h must be included before w5100.h"
 #endif
 
-// Arduino 101's SPIETH can not run faster than 8 MHz.
+// Arduino 101's SPI can not run faster than 8 MHz.
 #if defined(ARDUINO_ARCH_ARC32)
 #undef SPI_ETHERNET_SETTINGS
 #define SPI_ETHERNET_SETTINGS SPISettings(8000000, MSBFIRST, SPI_MODE0)
@@ -46,7 +46,7 @@
 #define SPI_ETHERNET_SETTINGS SPISettings(8000000, MSBFIRST, SPI_MODE0)
 #endif
 
-// Spresense's SPIETH can uses SPI_MODE3 with auto cs control by hardware.
+// Spresense's SPI can uses SPI_MODE3 with auto cs control by hardware.
 #if defined(ARDUINO_ARCH_SPRESENSE)
 #undef SPI_ETHERNET_SETTINGS
 #define SPI_ETHERNET_SETTINGS SPISettings(10000000, MSBFIRST, SPI_MODE3)
